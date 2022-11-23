@@ -1,0 +1,33 @@
+<body>
+    <form style="text-align: center;" novalidate >
+        <label>
+            Name
+        </label><br>
+        <label>
+        <input class="form-control" [formControl]="controlname" [(ngModel)]="newmodel.Username" required maxlength="10" minlength="6">
+        <div *ngIf="controlname.dirty && controlname.invalid" class="alert-danger">
+            <div *ngIf="controlname.errors?.['required']"> Name is invalid Here</div>
+            <div *ngIf="controlname.errors?.['minlength']">Name minlength must be 5</div>
+        </div></label><br>
+        <label>Password</label><br>
+         <label>
+        <input  class="form-control" [formControl]="controlpassword" [(ngModel)]="newmodel.Password" required minlength="6" maxlength="10">
+        <div *ngIf="controlpassword.dirty && controlpassword.invalid" class="alert-danger">
+            <div *ngIf="controlpassword.errors?.['required']">Password is required here</div>
+            <div *ngIf="controlpassword.errors?.['minlength']">Password length must be between 6-10 </div>
+           </div>
+        </label><br>
+        <label>
+            Email
+         <br>
+            <input class="form-control" [formControl]="controlemile" required pattern="^[a-z0-9._]+@[a-z]+\.[a-z.]*" [(ngModel)]="newmodel.Email">
+            <div *ngIf="controlemile.invalid" class="alert-danger">
+               <div *ngIf="controlemile.errors?.['email']">emile must be with @ simvol</div>
+            </div> </label><br>
+            <button [disabled]="(controlname.invalid || controlpassword.invalid || controlemile.invalid )"
+         (click)="onClickButton()" class="btn btn-primary">
+           Register
+         </button>
+        
+    </form>
+</body>

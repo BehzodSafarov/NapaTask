@@ -1,0 +1,27 @@
+
+<body>
+    
+    <form style="text-align: center;" novalidate>
+      <label>
+        Username
+      </label><br>
+      <input class="form-control" [formControl]="controlname" [(ngModel)]="newLoginmodel.username" required minlength="6" maxlength="10" >
+      <div *ngIf="!controlname.valid && controlname.dirty">
+       <div *ngIf="controlname.errors?.['required']">userName is required</div>
+       <div *ngIf="controlname.errors?.['minlength']">userName length must be between 6-10</div>
+      </div><br>
+      <label>
+        Password
+      </label><br>
+      <input class="form-control" [formControl]="controlpassword" [(ngModel)]="newLoginmodel.password" minlength="6" required type="password" >
+      <div *ngIf=" controlpassword.invalid  && controlname.dirty" class="alert-danger">
+       <div *ngIf="controlpassword.errors?.['required']">Password is required</div>
+       <div *ngIf="controlpassword.errors?.['minlength']">Password length must be between 6-10 </div>
+      </div><br>
+      <button [disabled]="controlname.invalid || controlpassword.invalid"
+       (click)="OnClickButton()" class="btn btn-primary">Login</button>
+       <div  class="alert alert-danger" *ngIf="responce">Siz hato parol yoki userName kiritdingiz</div>
+    </form>
+ 
+  </body>
+  
